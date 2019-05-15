@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class ScrumSystemApplication {
 
-
+//main
     public static void main(String... args) {
         SpringApplication.run(ScrumSystemApplication.class, args);
     }
