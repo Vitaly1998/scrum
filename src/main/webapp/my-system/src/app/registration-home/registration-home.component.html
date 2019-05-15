@@ -1,0 +1,97 @@
+<html lang="en">
+<head>
+  <title>Registration</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div class="limiter">
+  <div class="container-login100">
+    <div class="wrap-login100">
+      <div class="login100-form-title" style="background-image: url(../../assets/img/bg-01.jpg);">
+					<span class="login100-form-title-1">
+						SCRUM system
+					</span>
+      </div>
+
+      <form  class="login100-form validate-form" [formGroup]="regForm" (ngSubmit)="getData()">
+        <div class="wrap-input100 validate-input m-b-26">
+          <span class="label-input100">Name</span>
+          <input class="input100 form-control" type="text" name="name" placeholder="Enter name" id="name" formControlName="name"  [ngClass]="{ 'is-invalid': submitted && reg.name.errors }" >
+          <div *ngIf="submitted && reg.name.errors" class="invalid-feedback" style="color: darkred">
+            <div *ngIf="reg.name.errors.required" style="color: darkred"> Name is required</div>
+          </div>
+          <span class="focus-input100"></span>
+        </div>
+
+          <div class="wrap-input100 validate-input m-b-26">
+            <span class="label-input100">Surname</span>
+            <input class="input100 form-control" type="text" name="surname" placeholder="Enter surname" id="surname" formControlName="surname"  [ngClass]="{ 'is-invalid': submitted && reg.surname.errors }" >
+            <div *ngIf="submitted && reg.surname.errors" class="invalid-feedback" style="color: darkred">
+              <div *ngIf="reg.surname.errors.required" style="color: darkred"> Surname is required</div>
+            </div>
+            <span class="focus-input100"></span>
+          </div>
+
+          <div class="wrap-input100 validate-input m-b-26">
+            <span class="label-input100 ">Role</span>
+            <input class="input100 form-control" type="text" name="role" placeholder="Enter role"  id="role" formControlName="role"  [ngClass]="{ 'is-invalid': submitted && reg.role.errors }" >
+            <div *ngIf="submitted && reg.role.errors" class="invalid-feedback" style="color: darkred">
+              <div *ngIf="reg.role.errors.required" style="color: darkred"> Role is required</div>
+              <div *ngIf="reg.role.errors.pattern" style="color: darkred"> Role must be: DEVELOPER/DESIGNER/ANALYTIC/PRODUCT_OWNER/TESTER</div>
+            </div>
+
+            <span class="focus-input100"></span>
+          </div>
+
+        <div class="wrap-input100 validate-input m-b-26">
+          <span class="label-input100">Username</span>
+          <input class="input100 form-control" type="text" name="username" placeholder="Enter username"  id="username" formControlName="username"  [ngClass]="{ 'is-invalid': submitted && reg.username.errors }" >
+          <div *ngIf="submitted && reg.username.errors" class="invalid-feedback" style="color: darkred">
+            <div *ngIf="reg.username.errors.required" style="color: darkred"> Username is required</div>
+            <div *ngIf="reg.username.errors.minlength" style="color: darkred"> Username must be at least 6 characters</div>
+          </div>
+
+          <span class="focus-input100"></span>
+        </div>
+
+        <div class="wrap-input100 validate-input m-b-18">
+          <span class="label-input100">Password</span>
+          <input class="input100 form-control" type="password" name="pass" placeholder="Enter password" id="password" formControlName="password"  [ngClass]="{ 'is-invalid': submitted && reg.password.errors }" >
+          <div *ngIf="submitted && reg.password.errors" class="invalid-feedback" style="color: darkred">
+            <div *ngIf="reg.password.errors.required" style="color: darkred"> Password is required</div>
+            <div *ngIf="reg.password.errors.minlength" style="color: darkred"> Password must be at least 6 characters</div>
+          </div>
+          <span class="focus-input100"></span>
+        </div>
+
+        <div class="container-login100-form-btn "  >
+          <button class="login100-form-btn" [disabled]="loading" >
+            Sign Up
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!--===============================================================================================-->
+<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+<script src="vendor/bootstrap/js/popper.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+<script src="vendor/daterangepicker/moment.min.js"></script>
+<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+<script src="js/main.js"></script>
+
+</body>
+</html>

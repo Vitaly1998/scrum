@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Main page</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+
+<div id="sidebar">
+
+  <div class="navbar-expand-md navbar-dark">
+
+    <header class="d-none d-md-block">
+      <h1><span>scrum</span>system</h1>
+    </header>
+
+
+    <div class="mobile-header-controls">
+      <a class="navbar-brand d-md-none d-lg-none d-xl-none" href="#"><span>my</span>website</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#SidebarContent" aria-controls="SidebarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+
+    <div id="SidebarContent" class="collapse flex-column navbar-collapse">
+
+
+      <nav class="navbar navbar-dark">
+        <div id="mainNavbar">
+          <ul class="flex-column mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" (click)="goMain()">Мои задачи</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link"(click)="goFree()">Свободные задачи</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" (click)="goFinished()">Завершенные задачи </a>
+            </li>
+
+            <li class="nav-item active">
+              <a class="nav-link" (click)="goNewtask()">Cоздать и назначить задачу  <span class="sr-only">(current)</span></a>
+            </li>
+
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+<div id="content">
+  <div id="content-wrapper">
+
+    <!-- Main content area -->
+    <main class="container-fluid">
+      <div class="row">
+
+        <div class="col-md-8">
+          <article>
+            <h2 class="article-title"> Cоздать и назначить задачу </h2>
+
+            <p class="article-meta"> В данном разделе можно создать и назначить задачу </p>
+
+            <form  class="login100-form validate-form" [formGroup]="taskForm" (ngSubmit)="getData()">
+              <div class="wrap-input100 validate-input m-b-26">
+                <span class="label-input100">Задача</span>
+                <input class="input100 form-control" type="text" name="name" placeholder="Название задачи" id="name" formControlName="name"  [ngClass]="{ 'is-invalid': submitted && reg.name.errors }" >
+                <div *ngIf="submitted && reg.name.errors" class="invalid-feedback" style="color: darkred">
+                  <div *ngIf="reg.name.errors.required" style="color: darkred">Обязательное поле</div>
+                </div>
+                <span class="focus-input100"></span>
+              </div>
+
+              <div class="wrap-input100 validate-input m-b-26">
+                <span class="label-input100">Описание</span>
+                <input class="input100 form-control" type="text" name="purpose" placeholder="Цель и описание задачи" id="purpose" formControlName="purpose"  [ngClass]="{ 'is-invalid': submitted && reg.purpose.errors }" >
+                <div *ngIf="submitted && reg.purpose.errors" class="invalid-feedback" style="color: darkred">
+                  <div *ngIf="reg.purpose.errors.required" style="color: darkred">Обязательное поле</div>
+                </div>
+                <span class="focus-input100"></span>
+              </div>
+
+              <div class="wrap-input100 validate-input m-b-26">
+                <span class="label-input100 ">Приоритет</span>
+                <input class="input100 form-control" type="text" name="priority" placeholder="Приоритет задача"  id="priority" formControlName="priority"  [ngClass]="{ 'is-invalid': submitted && reg.priority.errors }" >
+                <div *ngIf="submitted && reg.priority.errors" class="invalid-feedback" style="color: darkred">
+                  <div *ngIf="reg.priority.errors.required" style="color: darkred">Обязательное поле</div>
+                  <div *ngIf="reg.priority.errors.pattern" style="color: darkred"> Поле должно содержать: low/medium/high/critical </div>
+                </div>
+
+                <span class="focus-input100"></span>
+              </div>
+
+              <div class="wrap-input100 validate-input m-b-26">
+                <span class="label-input100">Пользвователь</span>
+                <input class="input100 form-control" type="text" name="user_new" placeholder="Фамилия пользователя/Никому"  id="user_new" formControlName="user_new"  [ngClass]="{ 'is-invalid': submitted && reg.user_new.errors }" >
+                <div *ngIf="submitted && reg.user_new.errors" class="invalid-feedback" style="color: darkred">
+                </div>
+
+                <span class="focus-input100"></span>
+              </div>
+
+              <div class="wrap-input100 validate-input m-b-18">
+                <span class="label-input100">Проект</span>
+                <input class="input100 form-control" type="text" name="project" placeholder="Название проекта" id="project" formControlName="project"  [ngClass]="{ 'is-invalid': submitted && reg.project.errors }" >
+                <div *ngIf="submitted && reg.project.errors" class="invalid-feedback" style="color: darkred">
+                  <div *ngIf="reg.project.errors.required" style="color: darkred">Обязательное поле</div>
+                </div>
+                <span class="focus-input100"></span>
+              </div>
+
+              <div class="container-login100-form-btn " >
+                <button class="btn btn-primary" style="background-color: #ed8d1c; color: white; border-color: #ed8d1c; margin-top: 10px"  [disabled]="loading" >
+                  Создать
+                </button>
+              </div>
+
+            </form>
+          </article>
+
+
+        </div>
+
+        <aside class="col-md-4">
+          <div class="sidebar-box">
+            <h4>Полезные ссылки</h4>
+            <ul>
+              <li><a href="https://ru.wikipedia.org/wiki/SCRUM" title="premium templates">SCRUM</a></li>
+              <li><a href="https://www.scrum.org/resources/scrum-guide" title="web hosting">The official scrum guide</a></li>
+              <li><a href="http://citforum.ru/SE/project/scrum/" title="Tux Themes">Обзор методологии SCRUM</a></li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+
+    <!-- Footer -->
+    <div class="container-fluid footer-container">
+      <footer class="footer">
+        <div class="footer-lists">
+          <div class="row">
+            <div class="col-sm">
+              <ul>
+                <li><h4>Управление задачами</h4></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </footer>
+    </div>
+  </div>
+</div>
+
+<!-- Bootcamp JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>
